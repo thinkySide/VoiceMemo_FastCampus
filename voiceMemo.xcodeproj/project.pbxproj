@@ -122,7 +122,6 @@
 				12E7D5442A8B50EB00A77193 /* Component */,
 				128AB1AD2A7A4A6F00775225 /* Feature */,
 				128AB1A92A7A4A1A00775225 /* Model */,
-				128AB19E2A7A49EB00775225 /* Assets.xcassets */,
 				128AB1A02A7A49EB00775225 /* Preview Content */,
 			);
 			path = voiceMemo;
@@ -142,6 +141,7 @@
 				128AB19A2A7A49EA00775225 /* voiceMemoApp.swift */,
 				12F0E94D2A8C869600773BAD /* AppDelegate.swift */,
 				128AAF302A8EEF1800797F72 /* LaunchScreen.storyboard */,
+				128AB19E2A7A49EB00775225 /* Assets.xcassets */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -386,7 +386,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					128AB1962A7A49EA00775225 = {
 						CreatedOnToolsVersion = 14.3;
@@ -505,6 +505,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -565,6 +566,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
