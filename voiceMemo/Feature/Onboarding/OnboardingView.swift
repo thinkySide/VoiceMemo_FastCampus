@@ -8,16 +8,38 @@ import SwiftUI
 struct OnboardingView: View {
     
     @StateObject private var onboardingViewModel = OnboardingViewModel()
+    @StateObject private var pathModel = PathModel()
     
     var body: some View {
-        
-        // TODO: - 화면 전환 구현 필요
-        OnboardingContentView(onboardingViewModel: onboardingViewModel)
+        NavigationStack(path: $pathModel.paths) {
+            OnboardingContentView(onboardingViewModel: onboardingViewModel)
+                .navigationDestination(
+                    for: PathType.self
+                ) { pathType in
+                    switch pathType {
+                    case .homeView:
+                        HomeView()
+                            .navigationBarBackButtonHidden()
+                        
+                    case .todoView:
+                        TodoView()
+                            .navigationBarBackButtonHidden()
+                        
+                    case .memoView:
+                        MemoView()
+                            .navigationBarBackButtonHidden()
+                    }
+                }
+        }
+        /// 앞으로 계속 네비게이션 스택으로 사용하기 때문에
+        /// environmentObject로 전역적으로 만들어줌
+        .environmentObject(pathModel)
     }
 }
 
 // MARK: - 온보딩 컨텐츠 뷰
 private struct OnboardingContentView: View {
+    
     @ObservedObject private var onboardingViewModel: OnboardingViewModel
     
     fileprivate init(onboardingViewModel: OnboardingViewModel) {
@@ -36,6 +58,7 @@ private struct OnboardingContentView: View {
 
 // MARK: - 온보딩 셀 리스트 뷰
 private struct OnboardingCellListView: View {
+    
     @ObservedObject private var onboardingViewModel: OnboardingViewModel
     @State private var selectedIndex: Int
     
@@ -108,9 +131,15 @@ private struct OnboardingCellView: View {
 
 // MARK: - 시작하기 버튼 뷰
 private struct StartButtonView: View {
+    
+    /// 위에서만든 pathModel 전역객체 받아오기
+    @EnvironmentObject private var pathModel: PathModel
+    
     fileprivate var body: some View {
         Button(action: {
             
+            /// pathModel의 값이 변경되면서 네비게이션 스택이 쌓이게 됨.
+            pathModel.paths.append(.homeView)
         }, label: {
             HStack {
                 Text("시작하기")
