@@ -9,6 +9,7 @@ struct TodoListView: View {
     
     @EnvironmentObject private var pathModel: PathModel
     @EnvironmentObject private var todoListViewModel: TodoListViewModel
+    @EnvironmentObject private var homeViewModel: HomeViewModel
     
     var body: some View {
         ZStack {
@@ -50,6 +51,12 @@ struct TodoListView: View {
                 todoListViewModel.removeButtonTapped()
             }
             Button("취소", role: .cancel) {}
+        }
+        
+        /// 실시간으로 todo가 생성, 삭제될 때마다
+        /// homeViewModel의 메서드 호출(데이터 업데이트)
+        .onChange(of: todoListViewModel.todos) { todos in
+            homeViewModel.setTodosCount(todos.count)
         }
     }
 }
