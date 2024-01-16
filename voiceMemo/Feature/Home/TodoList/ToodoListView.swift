@@ -12,37 +12,32 @@ struct TodoListView: View {
     @EnvironmentObject private var homeViewModel: HomeViewModel
     
     var body: some View {
-        ZStack {
-            // 투두 셀 리스트
-            VStack {
-                if !todoListViewModel.todos.isEmpty {
-                    CustomNavigationBar(
-                        isDisplayLeftButton: false,
-                        rightButtonAction: {
-                            todoListViewModel.navigationRightButtonTapped()
-                        },
-                        rightButtonType: todoListViewModel.navigationBarRightButtonMode
-                    )
-                } else {
-                    Spacer()
-                        .frame(height: 30)
-                }
-                
-                TitleView()
-                    .padding(.top, 20)
-                
-                if todoListViewModel.todos.isEmpty {
-                    AnnouncementView()
-                } else {
-                    TodoListContentView()
-                        .padding(.top, 20)
-                }
+        // 투두 셀 리스트
+        VStack {
+            if !todoListViewModel.todos.isEmpty {
+                CustomNavigationBar(
+                    isDisplayLeftButton: false,
+                    rightButtonAction: {
+                        todoListViewModel.navigationRightButtonTapped()
+                    },
+                    rightButtonType: todoListViewModel.navigationBarRightButtonMode
+                )
+            } else {
+                Spacer()
+                    .frame(height: 30)
             }
             
-            WriteTodoButtonView()
-                .padding(.trailing, 20)
-                .padding(.bottom, 50)
+            TitleView()
+                .padding(.top, 20)
+            
+            if todoListViewModel.todos.isEmpty {
+                AnnouncementView()
+            } else {
+                TodoListContentView()
+                    .padding(.top, 20)
+            }
         }
+        .writeButton { pathModel.paths.append(.todoView) }
         .alert(
             "TO DO List \(todoListViewModel.removeTodosCount)개 삭제하시겠습니까?",
             isPresented: $todoListViewModel.isDisplayRemoveTodoAlert

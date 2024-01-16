@@ -14,7 +14,7 @@ struct OnboardingView: View {
     
     var body: some View {
         NavigationStack(path: $pathModel.paths) {
-             OnboardingContentView(onboardingViewModel: onboardingViewModel)
+            OnboardingContentView(onboardingViewModel: onboardingViewModel)
                 .navigationDestination(
                     for: PathType.self
                 ) { pathType in
@@ -37,8 +37,8 @@ struct OnboardingView: View {
                             : .init(memo: memo ?? .init(title: "", content: "", date: .now)),
                             isCreateMode: isCreateMode
                         )
-                            .navigationBarBackButtonHidden()
-                            .environmentObject(memoListViewModel)
+                        .navigationBarBackButtonHidden()
+                        .environmentObject(memoListViewModel)
                     }
                 }
         }
